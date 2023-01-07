@@ -23,9 +23,14 @@ def get_page() -> str:
 
 @app.route("/color-choice", methods=['GET', 'POST'])
 def saisie_couleur() -> str:
+    """Implémentation de la page de résultat lors de la soumission du formulaire
+
+    Returns:
+        str: Résultat de la page du choix de couleur
+    """
     if (request.method == 'GET'):
         color = request.args.get('color-choice')
-        
+    
     elif (request.method == 'POST'):
         color = request.form.get('color-choice')
     
@@ -46,6 +51,11 @@ def saisie_couleur() -> str:
     return page_content
 
 def page_erreur() -> str:
+    """Implémentation de la page d'erreur
+
+    Returns:
+        str: Chaîne de caractère construisant la page d'erreur
+    """
     page_content = "<html>\n"
     page_content = page_content + "<head>\n"
     page_content = page_content + "<title>\n"
