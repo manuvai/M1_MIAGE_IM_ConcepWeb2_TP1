@@ -21,6 +21,72 @@ def get_page() -> str:
 
     return page_content
 
+@app.route("/number-prompt", methods=['GET', 'POST'])
+def saisie_nombres() -> str:
+    """Implémentation de la page de résultat de la saisie de bornes
+
+    Returns:
+        str: Résultat de la page de saisie des bornes
+    """
+    borne_inf = None
+    borne_sup = None
+
+    if (request.method == 'GET'):
+        borne_inf = int(request.args.get('borne-inf'))
+        borne_sup = int(request.args.get('borne-sup'))
+
+    elif (request.method == 'POST'):
+        borne_inf = int(request.form.get('borne-inf'))
+        borne_sup = int(request.form.get('borne-sup'))
+
+    if ((borne_inf is None) or (borne_sup is None)):
+        return page_erreur()
+
+    temp_list = []
+    for i in range(borne_inf + 1, borne_sup):
+        temp_list.append(f"<li>{i}</li>")
+    
+    numbers_between = '\n'.join(temp_list)
+
+    borne_inf_squarred = borne_inf ** 2
+    borne_sup_squarred = borne_sup ** 2
+
+    page_content = "<html>\n"
+    page_content = page_content + "<head>\n"
+    page_content = page_content + "<title>\n"
+    page_content = page_content + "Saisie de nombres\n"
+    page_content = page_content + "</title>\n"
+    page_content = page_content + "</head>\n"
+    page_content = page_content + "<body>\n"
+    page_content = page_content + "<div>"
+    page_content = page_content + "    <table border=\"1\">"
+    page_content = page_content + "        <tr>"
+    page_content = page_content + "            <td>Borne inférieure :</td>"
+    page_content = page_content + f"            <td>{str(borne_inf)}</td>"
+    page_content = page_content + "        </tr>"
+    page_content = page_content + "        <tr>"
+    page_content = page_content + "            <td>Borne supérieure :</td>"
+    page_content = page_content + f"            <td>{str(borne_sup)}</td>"
+    page_content = page_content + "        </tr>"
+    page_content = page_content + "        <tr>"
+    page_content = page_content + "            <td>Nombres entier entre ces deux bornes :</td>"
+    page_content = page_content + f"            <td>{str(numbers_between)}</td>"
+    page_content = page_content + "        </tr>"
+    page_content = page_content + "        <tr>"
+    page_content = page_content + "            <td>Carré de la borne inférieure :</td>"
+    page_content = page_content + f"            <td>{str(borne_inf_squarred)}</td>"
+    page_content = page_content + "        </tr>"
+    page_content = page_content + "        <tr>"
+    page_content = page_content + "            <td>Carré de la borne supérieure :</td>"
+    page_content = page_content + f"            <td>{str(borne_sup_squarred)}</td>"
+    page_content = page_content + "        </tr>"
+    page_content = page_content + "    </table>"
+    page_content = page_content + "</div>"
+    page_content = page_content + "</body>\n"
+    page_content = page_content + "</html>\n"
+
+    return page_content
+
 @app.route("/color-choice", methods=['GET', 'POST'])
 def saisie_couleur() -> str:
     """Implémentation de la page de résultat lors de la soumission du formulaire

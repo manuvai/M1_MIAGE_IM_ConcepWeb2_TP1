@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entrée de bornes</title>
+</head>
+<body>
+    <form action="http://127.0.0.1:5000/number-prompt" method="post">
+        
+        <div>
+            <label for="borne-inf">Saisissez la borne inférieure :</label>
+            <input type="number" name="borne-inf" id="borne-inf" required />
+        </div>
+        <div>
+            <label for="borne-sup">Saisissez la borne supérieure :</label>
+            <input type="number" name="borne-sup" id="borne-sup" required />
+        </div>
+
+        <button type="submit">Valider</button>
+
+    </form>
+</body>
+</html>
