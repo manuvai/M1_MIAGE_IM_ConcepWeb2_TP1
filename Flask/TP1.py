@@ -47,6 +47,13 @@ def saisie_nombres() -> str:
         temp_list.append(f"<li>{i}</li>")
     
     numbers_between = '\n'.join(temp_list)
+    
+    # Solution alternative :
+    # ---------------------
+    # numbers_between = ""
+    # for i in range(borne_inf + 1, borne_sup):
+    #     numbers_between = numbers_between + f"<li>{i}</li>"
+
 
     borne_inf_squarred = borne_inf ** 2
     borne_sup_squarred = borne_sup ** 2
