@@ -1,7 +1,11 @@
 """
 @author: manuvai.rehua@ut-capitole.fr
 """
+from flask import Flask
 
+app = Flask(__name__)
+
+@app.route("/")
 def get_page() -> str:
     page_content = "<html>\n"
     page_content = page_content + "<head>\n"
