@@ -28,9 +28,12 @@ def saisie_couleur() -> str:
     Returns:
         str: Résultat de la page du choix de couleur
     """
+    
+    color = None
+
     if (request.method == 'GET'):
         color = request.args.get('color-choice')
-    
+
     elif (request.method == 'POST'):
         color = request.form.get('color-choice')
     
