@@ -31,7 +31,12 @@ def saisie_nombres() -> str:
         borne_sup = int(request.form.get('borne-sup'))
 
     if ((borne_inf is None) or (borne_sup is None)):
-        return page_erreur()
+        return page_erreur("Certaines données sont manquantes, veuillez réessayer !")
+
+    if (borne_inf > borne_sup):
+        # Ici, on part du principe où l'utilisateur n'a pas bien compris donc on gère l'erreur
+        #   en permutant la valeur des deux bornes
+        borne_inf, borne_sup = borne_sup, borne_inf
 
     temp_list = []
     for i in range(borne_inf + 1, borne_sup):
@@ -93,7 +98,7 @@ def saisie_couleur() -> str:
         color = request.form.get('color-choice')
     
     if (color is None):
-        return page_erreur()
+        return page_erreur("Vous n'avez pas choisi de couleur, veuillez réessayer !")
 
     page_content = f"<p><font color=\"{color}\"> La couleur du texte change à la demande! </font></p>\n"
 
@@ -110,7 +115,7 @@ def saisie_4_nombres() -> str:
     numbers = get_numbers_prompted(request.method)
 
     if ((not numbers is None) and (len(numbers) != 4)):
-        return page_erreur()
+        return page_erreur("Les données soumises concernant les nombres sont invalides. Veuillez réessayer en nous soumettant les 4 nombres s'il vous plaît !")
 
     numbers = tri(numbers)
 
