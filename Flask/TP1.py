@@ -214,13 +214,17 @@ def tri(liste: list) -> list:
 
     return liste
 
-def page_erreur() -> str:
+def page_erreur(message_erreur : str = None) -> str:
     """Implémentation de la page d'erreur
 
     Returns:
         str: Chaîne de caractère construisant la page d'erreur
     """
-    return page_template("404", "<p>Erreur</p>")
+
+    if (message_erreur is None):
+        message_erreur = "<p>Erreur</p>"
+
+    return page_template("404", message_erreur)
 
 def page_template(title: str, content: str) -> str:
     """Implémentation de la construction d'une page HTML
