@@ -8,7 +8,11 @@ app = Flask(__name__)
 
 @app.route("/")
 def get_page() -> str:
+    """Implémentation du test d'affichage initial de la page
 
+    Returns:
+        str: _description_
+    """
     page_content = "<p>La couleur du texte change à la demande!</p>\n"
     return page_template("Changer la couleur de fond (résultat)", page_content)
 
