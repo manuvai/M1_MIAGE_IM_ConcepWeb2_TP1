@@ -267,6 +267,27 @@ def page_erreur() -> str:
     page_content = page_content + "</html>\n"
     return page_content
 
+def page_template(title: str, content: str) -> str:
+    """Implémentation de la construction d'une page HTML
+
+    Args:
+        title (str): Titre de la page
+        content (str): Contenu de la page
+
+    Returns:
+        str: Le contenu de la page qui sera retournée
+    """
+    page_content = "<html>\n"
+    page_content = page_content + "<head>\n"
+    page_content = page_content + f"<title>{title}</title>\n"
+    page_content = page_content + "</head>\n"
+    page_content = page_content + "<body>\n"
+    page_content = page_content + f"{content}\n"
+    page_content = page_content + "</body>\n"
+    page_content = page_content + "</html>\n"
+    return page_content
+
+
 if __name__ == '__main__':
     host = '127.0.0.1'
     port = 5000
