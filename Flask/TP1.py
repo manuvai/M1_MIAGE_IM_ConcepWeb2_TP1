@@ -268,4 +268,8 @@ def page_erreur() -> str:
     return page_content
 
 if __name__ == '__main__':
-    print(tri([0, -5, 6, 4]))
+    host = '127.0.0.1'
+    port = 5000
+    debug = True
+
+    app.run(host, port, debug)
