@@ -8,18 +8,9 @@ app = Flask(__name__)
 
 @app.route("/")
 def get_page() -> str:
-    page_content = "<html>\n"
-    page_content = page_content + "<head>\n"
-    page_content = page_content + "<title>\n"
-    page_content = page_content + "Changer la couleur de fond (résultat)\n"
-    page_content = page_content + "</title>\n"
-    page_content = page_content + "</head>\n"
-    page_content = page_content + "<body>\n"
-    page_content = page_content + "<p>La couleur du texte change à la demande!</p>\n"
-    page_content = page_content + "</body>\n"
-    page_content = page_content + "</html>\n"
 
-    return page_content
+    page_content = "<p>La couleur du texte change à la demande!</p>\n"
+    return page_template("Changer la couleur de fond (résultat)", page_content)
 
 @app.route("/number-prompt", methods=['GET', 'POST'])
 def saisie_nombres() -> str:
@@ -58,14 +49,7 @@ def saisie_nombres() -> str:
     borne_inf_squarred = borne_inf ** 2
     borne_sup_squarred = borne_sup ** 2
 
-    page_content = "<html>\n"
-    page_content = page_content + "<head>\n"
-    page_content = page_content + "<title>\n"
-    page_content = page_content + "Saisie de nombres\n"
-    page_content = page_content + "</title>\n"
-    page_content = page_content + "</head>\n"
-    page_content = page_content + "<body>\n"
-    page_content = page_content + "<div>\n"
+    page_content = "<div>\n"
     page_content = page_content + "    <table border=\"1\">\n"
     page_content = page_content + "        <tr>\n"
     page_content = page_content + "            <td>Borne inférieure :</td>\n"
@@ -89,10 +73,8 @@ def saisie_nombres() -> str:
     page_content = page_content + "        </tr>\n"
     page_content = page_content + "    </table>\n"
     page_content = page_content + "</div>\n"
-    page_content = page_content + "</body>\n"
-    page_content = page_content + "</html>\n"
 
-    return page_content
+    return page_template("Saisie de nombres\n", page_content)
 
 @app.route("/color-choice", methods=['GET', 'POST'])
 def saisie_couleur() -> str:
@@ -113,18 +95,9 @@ def saisie_couleur() -> str:
     if (color is None):
         return page_erreur()
 
-    page_content = "<html>\n"
-    page_content = page_content + "<head>\n"
-    page_content = page_content + "<title>\n"
-    page_content = page_content + "Changer la couleur de fond (résultat)\n"
-    page_content = page_content + "</title>\n"
-    page_content = page_content + "</head>\n"
-    page_content = page_content + "<body>\n"
-    page_content = page_content + f"<p><font color=\"{color}\"> La couleur du texte change à la demande! </font></p>\n"
-    page_content = page_content + "</body>\n"
-    page_content = page_content + "</html>\n"
+    page_content = f"<p><font color=\"{color}\"> La couleur du texte change à la demande! </font></p>\n"
 
-    return page_content
+    return page_template("Changer la couleur de fond (résultat)\n", page_content)
 
 @app.route("/4-numbers-prompt", methods=['GET', 'POST'])
 def saisie_4_nombres() -> str:
@@ -203,14 +176,7 @@ def get_page_4_nombres(numbers: list) -> str:
     for num in numbers:
         numbers_prompted += f"<li>{str(num)}</li>"
     
-    page_content = "<html>\n"
-    page_content = page_content + "<head>\n"
-    page_content = page_content + "<title>\n"
-    page_content = page_content + "Changer la couleur de fond (résultat)\n"
-    page_content = page_content + "</title>\n"
-    page_content = page_content + "</head>\n"
-    page_content = page_content + "<body>\n"
-    page_content = page_content + "<div>\n"
+    page_content = "<div>\n"
     page_content = page_content + "    <table border=\"1\">\n"
     page_content = page_content + "        <tr>\n"
     page_content = page_content + "            <td>Nombres entrés :</td>\n"
@@ -226,9 +192,8 @@ def get_page_4_nombres(numbers: list) -> str:
     page_content = page_content + "        </tr>\n"
     page_content = page_content + "    </table>\n"
     page_content = page_content + "</div>\n"
-    page_content = page_content + "</body>\n"
-    page_content = page_content + "</html>\n"
-    return page_content
+
+    return page_template("Changer la couleur de fond (résultat)", page_content)
 
 def tri(liste: list) -> list:
     """Implémentation du tri d'une liste contenant des entiers
@@ -255,17 +220,7 @@ def page_erreur() -> str:
     Returns:
         str: Chaîne de caractère construisant la page d'erreur
     """
-    page_content = "<html>\n"
-    page_content = page_content + "<head>\n"
-    page_content = page_content + "<title>\n"
-    page_content = page_content + "400\n"
-    page_content = page_content + "</title>\n"
-    page_content = page_content + "</head>\n"
-    page_content = page_content + "<body>\n"
-    page_content = page_content + "<p>Erreur</p>\n"
-    page_content = page_content + "</body>\n"
-    page_content = page_content + "</html>\n"
-    return page_content
+    return page_template("404", "<p>Erreur</p>")
 
 def page_template(title: str, content: str) -> str:
     """Implémentation de la construction d'une page HTML
@@ -277,7 +232,8 @@ def page_template(title: str, content: str) -> str:
     Returns:
         str: Le contenu de la page qui sera retournée
     """
-    page_content = "<html>\n"
+    page_content = "<!DOCTYPE html>"
+    page_content = page_content + "<html>\n"
     page_content = page_content + "<head>\n"
     page_content = page_content + f"<title>{title}</title>\n"
     page_content = page_content + "</head>\n"
