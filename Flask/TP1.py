@@ -66,7 +66,7 @@ def saisie_nombres() -> str:
     page_content = page_content + "        </tr>\n"
     page_content = page_content + "        <tr>\n"
     page_content = page_content + "            <td>Nombres entier entre ces deux bornes :</td>\n"
-    page_content = page_content + f"            <td>{str(numbers_between)}</td>\n"
+    page_content = page_content + f"            <td><ul>{str(numbers_between)}</ul></td>\n"
     page_content = page_content + "        </tr>\n"
     page_content = page_content + "        <tr>\n"
     page_content = page_content + "            <td>Carré de la borne inférieure :</td>\n"
